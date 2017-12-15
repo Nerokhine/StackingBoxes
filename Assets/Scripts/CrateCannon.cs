@@ -34,6 +34,7 @@ public class CrateCannon : MonoBehaviour {
 					}
 				}
 				GetComponent<Rigidbody2D> ().MovePosition (new Vector2 (transform.position.x, maxSoFar));
+				Camera.main.transform.position = new Vector3 (0, maxSoFar + 4f, -10f);
 			}
 		}
 
