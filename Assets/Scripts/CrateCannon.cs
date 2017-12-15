@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CrateCannon : MonoBehaviour {
 	GameObject cratePrefab;
@@ -9,6 +10,7 @@ public class CrateCannon : MonoBehaviour {
 	float timeToSpawnCrate;
 	float timeToSpawnCrateCounter;
 	bool crateSpawnTrigger, crateSpawnTrigger2;
+	int crateCeiling = 5;
 	// Use this for initialization
 	void Start () {
 		cratePrefab = (GameObject)Resources.Load ("Prefabs/box");
@@ -33,11 +35,15 @@ public class CrateCannon : MonoBehaviour {
 						maxSoFar = crate.transform.localPosition.y;
 					}
 				}
-				//raise ceiling every 3 crates
-				if (Launcher.cratesLaunched % 3 == 0) {
+
+				//raise ceiling every 5 crates
+				if (Launcher.cratesLaunched == crateCeiling) {
 					GetComponent<Rigidbody2D> ().MovePosition (new Vector2 (transform.position.x, transform.position.y + 1f));
 					Camera.main.transform.position = new Vector3 (0, Camera.main.transform.position.y + 1f, -10f);
+					crateCeiling += 5;
 				}
+
+				GameObject.Find ("ElevateText").GetComponent<Text> ().text = "Crates Until Next Level: " + (crateCeiling - Launcher.cratesLaunched);
 			}
 		}
 
