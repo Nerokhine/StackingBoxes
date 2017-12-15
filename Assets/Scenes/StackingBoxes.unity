@@ -122,6 +122,7 @@ GameObject:
   - component: {fileID: 198239038}
   - component: {fileID: 198239037}
   - component: {fileID: 198239036}
+  - component: {fileID: 198239039}
   m_Layer: 0
   m_Name: PowerBar
   m_TagString: Untagged
@@ -186,7 +187,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 198239035}
   m_LocalRotation: {x: -0, y: -0, z: -0.38268343, w: 0.92387956}
-  m_LocalPosition: {x: 0.87, y: 0.89, z: 0}
+  m_LocalPosition: {x: 0.95, y: 0.95, z: 0}
   m_LocalScale: {x: 0.3, y: 0.3, z: 1}
   m_Children:
   - {fileID: 376368185}
@@ -196,6 +197,26 @@ Transform:
   m_Father: {fileID: 270753126}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -45}
+--- !u!50 &198239039
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 198239035}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &205044516
 GameObject:
   m_ObjectHideFlags: 0
@@ -305,6 +326,7 @@ GameObject:
   - component: {fileID: 270753126}
   - component: {fileID: 270753122}
   - component: {fileID: 270753123}
+  - component: {fileID: 270753124}
   m_Layer: 0
   m_Name: LaunchingStation
   m_TagString: Untagged
@@ -343,6 +365,29 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!233 &270753124
+HingeJoint2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 270753121}
+  m_Enabled: 1
+  serializedVersion: 4
+  m_EnableCollision: 0
+  m_ConnectedRigidBody: {fileID: 198239039}
+  m_BreakForce: Infinity
+  m_BreakTorque: Infinity
+  m_AutoConfigureConnectedAnchor: 1
+  m_Anchor: {x: 0, y: 0}
+  m_ConnectedAnchor: {x: 0.00000019868214, y: -4.4783425}
+  m_UseMotor: 1
+  m_Motor:
+    m_MotorSpeed: 0
+    m_MaximumMotorForce: 10000
+  m_UseLimits: 0
+  m_AngleLimits:
+    m_LowerAngle: 0
+    m_UpperAngle: 359
 --- !u!4 &270753126
 Transform:
   m_ObjectHideFlags: 0
