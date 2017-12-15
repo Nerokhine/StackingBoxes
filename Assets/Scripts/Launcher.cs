@@ -87,12 +87,18 @@ public class Launcher : MonoBehaviour {
 		}
 
 		if (delayBeforeCheckingCollisionCounter >= delayBeforeCheckingCollision && once) {
-			foreach (Collider2D collider in GameObject.FindObjectsOfType<Collider2D>()) {
+			/*foreach (Collider2D collider in GameObject.FindObjectsOfType<Collider2D>()) {
 				if(GetComponent<BoxCollider2D>().IsTouching(collider)){
 					launchingStation.GetComponent<CrateCannon>().SpawnCrate();
 					once = false;
 					break;
 				}
+			}*/
+			if (GetComponent<Rigidbody2D> ().velocity.x == 0f &&
+				GetComponent<Rigidbody2D> ().velocity.y == 0f &&
+				GetComponent<Rigidbody2D> ().angularVelocity == 0f) {
+				launchingStation.GetComponent<CrateCannon>().SpawnCrate();
+				once = false;
 			}
 		}
 	}
