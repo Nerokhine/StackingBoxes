@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Launcher : MonoBehaviour {
-	public static int cratesLaunched = 0;
+	public static int cratesLaunched;
 	GameObject powerBarMask;
 	GameObject launchingStation;
 	GameObject powerBar;

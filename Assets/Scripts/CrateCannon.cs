@@ -10,7 +10,7 @@ public class CrateCannon : MonoBehaviour {
 	float timeToSpawnCrate;
 	float timeToSpawnCrateCounter;
 	bool crateSpawnTrigger, crateSpawnTrigger2;
-	int crateCeiling = 5;
+	int crateCeiling;
 	float maxSoFar;
 	bool startEndGame;
 	float startRestartGameCounter;
@@ -26,6 +26,8 @@ public class CrateCannon : MonoBehaviour {
 		maxSoFar = 0f;
 		startRestartGameCounter = 0f;
 		startEndGame = false;
+		crateCeiling = 5;
+		Launcher.cratesLaunched = 0;
 	}
 	
 	// Update is called once per frame
