@@ -11,6 +11,7 @@ public class Launcher : MonoBehaviour {
 	float rateLaunchForceX, rateLaunchForceY;
 	bool increasingLaunchForce;
 	bool hasLaunched;
+	bool once;
 	float delayBeforeCheckingCollision;
 	float delayBeforeCheckingCollisionCounter;
 
@@ -30,6 +31,7 @@ public class Launcher : MonoBehaviour {
 		hasLaunched = false;
 		launchForceX = initLaunchForceX;
 		launchForceY = initLaunchForceY;
+		once = true;
 	}
 	
 	// Update is called once per frame
@@ -82,10 +84,12 @@ public class Launcher : MonoBehaviour {
 			delayBeforeCheckingCollisionCounter += Time.deltaTime;
 		}
 
-		if (delayBeforeCheckingCollisionCounter >= delayBeforeCheckingCollision) {
+		if (delayBeforeCheckingCollisionCounter >= delayBeforeCheckingCollision && once) {
 			foreach (Collider2D collider in GameObject.FindObjectsOfType<Collider2D>()) {
 				if(GetComponent<BoxCollider2D>().IsTouching(collider)){
 					launchingStation.GetComponent<CrateCannon>().SpawnCrate();
+					once = false;
+					break;
 				}
 			}
 		}
