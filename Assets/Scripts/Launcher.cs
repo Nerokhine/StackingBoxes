@@ -6,10 +6,10 @@ public class Launcher : MonoBehaviour {
 	GameObject powerBarMask;
 	GameObject launchingStation;
 	GameObject powerBar;
-	float launchForceX, launchForceY;
-	float initLaunchForceX, initLaunchForceY;
-	float maxLaunchForceX, maxLaunchForceY;
-	float rateLaunchForceX, rateLaunchForceY;
+	float launchForce;
+	float initLaunchForce;
+	float maxLaunchForce;
+	float rateLaunchForce;
 	bool increasingLaunchForce;
 	bool hasLaunched;
 	bool once;
@@ -24,19 +24,15 @@ public class Launcher : MonoBehaviour {
 		powerBarMask = GameObject.Find ("PowerBarMask");
 		launchingStation = GameObject.Find ("LaunchingStation");
 		powerBar = GameObject.Find ("PowerBar");
-		initLaunchForceX = 800f;
-		initLaunchForceY = 1600f;
-		maxLaunchForceX = 2000f;
-		maxLaunchForceY = 4000f;
-		rateLaunchForceX = 20f;
-		rateLaunchForceY = 40f;
+		initLaunchForce = 3200f;
+		maxLaunchForce = 8000f;
+		rateLaunchForce = 80f;
 		motorSpeed = -50f;
 		delayBeforeCheckingCollision = 0.2f;
 		delayBeforeCheckingCollisionCounter = 0f;
 		increasingLaunchForce = true;
 		hasLaunched = false;
-		launchForceX = initLaunchForceX;
-		launchForceY = initLaunchForceY;
+		launchForce = initLaunchForce;
 		once = true;
 		once2 = true;
 		once3 = true;
@@ -48,6 +44,7 @@ public class Launcher : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		Debug.Log (powerBar.transform.localEulerAngles.z);
 		if (!Input.GetKey (KeyCode.Space)) {
 			if (powerBar.transform.localEulerAngles.z > 350f) {
 				if (once2) {
@@ -74,38 +71,35 @@ public class Launcher : MonoBehaviour {
 		if (!hasLaunched) {
 			if (Input.GetKey (KeyCode.Space)) {
 				if (increasingLaunchForce) {
-					launchForceX += rateLaunchForceX;
-					launchForceY += rateLaunchForceY;
+					launchForce += rateLaunchForce;
 				} else {
-					launchForceX -= rateLaunchForceX;
-					launchForceY -= rateLaunchForceY;
+					launchForce -= rateLaunchForce;
 				}
 
-				if (launchForceY >= maxLaunchForceY) {
-					launchForceX = maxLaunchForceX;
-					launchForceY = maxLaunchForceY;
+				if (launchForce >= maxLaunchForce) {
+					launchForce = maxLaunchForce;
 					increasingLaunchForce = false;
 				}
 
-				if (launchForceY <= initLaunchForceY) {
-					launchForceX = initLaunchForceX;
-					launchForceY = initLaunchForceY;
+				if (launchForce <= initLaunchForce) {
+					launchForce = initLaunchForce;
 					increasingLaunchForce = true;
 				}
 			}
 
 			powerBarMask.transform.localPosition = new Vector3 (
 				powerBarMask.transform.localPosition.x,
-				-3.5f * (1f - ((launchForceY - initLaunchForceY) / (maxLaunchForceY - initLaunchForceY))),
+				-3.5f * (1f - ((launchForce - initLaunchForce) / (maxLaunchForce - initLaunchForce))),
 				powerBarMask.transform.localPosition.z);
-
-			Debug.Log ("X: " + launchForceX + " Y: " + launchForceY);
 
 
 			if (Input.GetKeyUp (KeyCode.Space)) {
+				float launchForceY = ((powerBar.transform.localEulerAngles.z - 280f)/ (350f - 280f)) * launchForce;
+				float launchForceX = (1f - ((powerBar.transform.localEulerAngles.z - 280f)/ (350f - 280f))) * launchForce;
 				GetComponent<Rigidbody2D> ().AddForce (new Vector2 (launchForceX, launchForceY));
-				launchForceX = initLaunchForceX;
-				launchForceY = initLaunchForceY;
+				Debug.Log ("X: " + launchForceX + " Y: " + launchForceY);
+			
+				launchForce = initLaunchForce;
 				increasingLaunchForce = true;
 				powerBarMask.transform.localPosition = new Vector3 (
 					powerBarMask.transform.localPosition.x,
