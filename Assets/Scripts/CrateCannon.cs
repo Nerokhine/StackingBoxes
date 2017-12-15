@@ -12,6 +12,8 @@ public class CrateCannon : MonoBehaviour {
 	bool crateSpawnTrigger, crateSpawnTrigger2;
 	int crateCeiling = 5;
 	float maxSoFar;
+	bool startEndGame;
+	float startRestartGameCounter;
 	// Use this for initialization
 	void Start () {
 		cratePrefab = (GameObject)Resources.Load ("Prefabs/box");
@@ -22,10 +24,20 @@ public class CrateCannon : MonoBehaviour {
 		crateSpawnTrigger = false;
 		crateSpawnTrigger2 = false;
 		maxSoFar = 0f;
+		startRestartGameCounter = 0f;
+		startEndGame = false;
 	}
 	
 	// Update is called once per frame
 	void Update () {
+		if (startEndGame) {
+			startRestartGameCounter += Time.deltaTime;
+		}
+
+		if (startRestartGameCounter >= 5.0f) {
+			Application.LoadLevel(Application.loadedLevel);
+		}
+
 		if (crateSpawnTrigger) {
 			timeToCheckMaxCrateHeightCounter += Time.deltaTime;
 			if (timeToCheckMaxCrateHeightCounter >= timeToCheckMaxCrateHeight) {
@@ -36,6 +48,7 @@ public class CrateCannon : MonoBehaviour {
 						maxSoFar = crate.transform.localPosition.y;
 					}
 				}
+					
 
 				//raise ceiling every 5 crates
 				if (Launcher.cratesLaunched == crateCeiling) {
@@ -65,5 +78,10 @@ public class CrateCannon : MonoBehaviour {
 		timeToCheckMaxCrateHeightCounter = 0f;
 		crateSpawnTrigger = true;
 		crateSpawnTrigger2 = true;
+	}
+
+	public void EndGame(){
+		GameObject.Find ("WastedText").GetComponent<Text>().enabled = true;
+		startEndGame = true;
 	}
 }

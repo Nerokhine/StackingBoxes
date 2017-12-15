@@ -26,7 +26,7 @@ public class Launcher : MonoBehaviour {
 		powerBarMask = GameObject.Find ("PowerBarMask");
 		launchingStation = GameObject.Find ("LaunchingStation");
 		powerBar = GameObject.Find ("PowerBar");
-		initLaunchForce = 3200f;
+		initLaunchForce = 1000f;
 		maxLaunchForce = 8000f;
 		rateLaunchForce = 80f;
 		delayBeforeCheckingCollision = 0.2f;
@@ -132,7 +132,11 @@ public class Launcher : MonoBehaviour {
 			if (GetComponent<Rigidbody2D> ().velocity.x == 0f &&
 				GetComponent<Rigidbody2D> ().velocity.y == 0f &&
 				GetComponent<Rigidbody2D> ().angularVelocity == 0f) {
-				launchingStation.GetComponent<CrateCannon>().SpawnCrate();
+				if (GetComponent<SpriteRenderer> ().isVisible) {
+					launchingStation.GetComponent<CrateCannon> ().SpawnCrate ();
+				} else {
+					launchingStation.GetComponent<CrateCannon> ().EndGame ();
+				}
 				once = false;
 			}
 		}
