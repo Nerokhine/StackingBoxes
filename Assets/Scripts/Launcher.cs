@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Launcher : MonoBehaviour {
+	public static int cratesLaunched = 0;
 	GameObject powerBarMask;
 	GameObject launchingStation;
 	GameObject powerBar;
@@ -13,10 +14,10 @@ public class Launcher : MonoBehaviour {
 	bool increasingLaunchForce;
 	bool hasLaunched;
 	bool once;
-	bool once2, once3;
+	static bool once2, once3;
 	float delayBeforeCheckingCollision;
 	float delayBeforeCheckingCollisionCounter;
-	float motorSpeed;
+	static float motorSpeed = -50f;
 	JointMotor2D jointMotor;
 
 	// Use this for initialization
@@ -27,7 +28,6 @@ public class Launcher : MonoBehaviour {
 		initLaunchForce = 3200f;
 		maxLaunchForce = 8000f;
 		rateLaunchForce = 80f;
-		motorSpeed = -50f;
 		delayBeforeCheckingCollision = 0.2f;
 		delayBeforeCheckingCollisionCounter = 0f;
 		increasingLaunchForce = true;
@@ -106,6 +106,7 @@ public class Launcher : MonoBehaviour {
 					-3.5f,
 					powerBarMask.transform.localPosition.z);
 				hasLaunched = true;
+				cratesLaunched += 1;
 				//GetComponent<Rigidbody2D> ().bodyType = RigidbodyType2D.Dynamic;
 				transform.parent = GameObject.Find ("Boxes").transform;
 			}

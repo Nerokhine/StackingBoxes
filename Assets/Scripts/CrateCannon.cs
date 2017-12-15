@@ -33,8 +33,11 @@ public class CrateCannon : MonoBehaviour {
 						maxSoFar = crate.transform.localPosition.y;
 					}
 				}
-				GetComponent<Rigidbody2D> ().MovePosition (new Vector2 (transform.position.x, maxSoFar));
-				Camera.main.transform.position = new Vector3 (0, maxSoFar + 4f, -10f);
+				//raise ceiling every 3 crates
+				if (Launcher.cratesLaunched % 3 == 0) {
+					GetComponent<Rigidbody2D> ().MovePosition (new Vector2 (transform.position.x, transform.position.y + 1f));
+					Camera.main.transform.position = new Vector3 (0, Camera.main.transform.position.y + 1f, -10f);
+				}
 			}
 		}
 
