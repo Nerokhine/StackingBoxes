@@ -3,13 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Launcher : MonoBehaviour {
+	GameObject powerBarMask;
 	float launchForceX, launchForceY;
 	float initLaunchForceX, initLaunchForceY;
 	float maxLaunchForceX, maxLaunchForceY;
 	float rateLaunchForceX, rateLaunchForceY;
 	bool increasingLaunchForce;
+
 	// Use this for initialization
 	void Start () {
+		powerBarMask = GameObject.Find ("PowerBarMask");
 		initLaunchForceX = 50f;
 		initLaunchForceY = 100f;
 		maxLaunchForceX = 200f;
@@ -44,6 +47,11 @@ public class Launcher : MonoBehaviour {
 				increasingLaunchForce = true;
 			}
 		}
+
+		powerBarMask.transform.localPosition = new Vector3(
+			powerBarMask.transform.localPosition.x,
+			-3.5f * (1f - ((launchForceY - initLaunchForceY) / (maxLaunchForceY - initLaunchForceY))),
+			powerBarMask.transform.localPosition.z);
 
 		Debug.Log ("X: " + launchForceX + " Y: " + launchForceY);
 
