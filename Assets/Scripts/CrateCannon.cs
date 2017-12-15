@@ -11,6 +11,7 @@ public class CrateCannon : MonoBehaviour {
 	float timeToSpawnCrateCounter;
 	bool crateSpawnTrigger, crateSpawnTrigger2;
 	int crateCeiling = 5;
+	float maxSoFar;
 	// Use this for initialization
 	void Start () {
 		cratePrefab = (GameObject)Resources.Load ("Prefabs/box");
@@ -20,6 +21,7 @@ public class CrateCannon : MonoBehaviour {
 		timeToSpawnCrateCounter = 0f;
 		crateSpawnTrigger = false;
 		crateSpawnTrigger2 = false;
+		maxSoFar = 0f;
 	}
 	
 	// Update is called once per frame
@@ -29,7 +31,6 @@ public class CrateCannon : MonoBehaviour {
 			if (timeToCheckMaxCrateHeightCounter >= timeToCheckMaxCrateHeight) {
 				timeToCheckMaxCrateHeightCounter = 0f;
 				crateSpawnTrigger = false;
-				float maxSoFar = transform.position.y;
 				foreach (GameObject crate in GameObject.FindGameObjectsWithTag("Crate")) {
 					if (crate.transform.localPosition.y > maxSoFar) {
 						maxSoFar = crate.transform.localPosition.y;
@@ -43,6 +44,7 @@ public class CrateCannon : MonoBehaviour {
 					crateCeiling += 5;
 				}
 
+				GameObject.Find ("ScoreText").GetComponent<Text>().text = "Score: " + maxSoFar;
 				GameObject.Find ("ElevateText").GetComponent<Text> ().text = "Crates Until Next Level: " + (crateCeiling - Launcher.cratesLaunched);
 			}
 		}
@@ -52,6 +54,8 @@ public class CrateCannon : MonoBehaviour {
 			if (timeToSpawnCrateCounter >= timeToSpawnCrate) {
 				timeToSpawnCrateCounter = 0f;
 				crateSpawnTrigger2 = false;
+				GameObject.Find("PowerBarBack").GetComponent<SpriteRenderer>().enabled = true;
+				GameObject.Find ("LaunchingStationFloor").GetComponent<BoxCollider2D> ().enabled = true;
 				GameObject.Instantiate (cratePrefab, gameObject.transform);
 			}
 		}

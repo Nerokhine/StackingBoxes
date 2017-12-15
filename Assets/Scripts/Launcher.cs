@@ -19,6 +19,7 @@ public class Launcher : MonoBehaviour {
 	float delayBeforeCheckingCollisionCounter;
 	static float motorSpeed = -50f;
 	JointMotor2D jointMotor;
+	SpriteRenderer powerBarBack;
 
 	// Use this for initialization
 	void Start () {
@@ -40,6 +41,7 @@ public class Launcher : MonoBehaviour {
 		jointMotor.motorSpeed = motorSpeed;
 		jointMotor.maxMotorTorque = 10000f;
 		launchingStation.GetComponentInChildren<HingeJoint2D> ().motor = jointMotor;
+		powerBarBack = GameObject.Find ("PowerBarBack").GetComponent<SpriteRenderer> ();
 	}
 	
 	// Update is called once per frame
@@ -106,6 +108,9 @@ public class Launcher : MonoBehaviour {
 					-3.5f,
 					powerBarMask.transform.localPosition.z);
 				hasLaunched = true;
+				//powerBarBack.enabled = false;
+				GameObject.Find ("PowerBarBack").GetComponent<SpriteRenderer> ().enabled = false;
+				GameObject.Find ("LaunchingStationFloor").GetComponent<BoxCollider2D> ().enabled = false;
 				cratesLaunched += 1;
 				//GetComponent<Rigidbody2D> ().bodyType = RigidbodyType2D.Dynamic;
 				transform.parent = GameObject.Find ("Boxes").transform;
