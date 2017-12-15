@@ -34,7 +34,6 @@ public class CrateCannon : MonoBehaviour {
 					}
 				}
 				GetComponent<Rigidbody2D> ().MovePosition (new Vector2 (transform.position.x, maxSoFar));
-				//transform.position = new Vector3 (transform.position.x, maxSoFar, transform.position.z);
 			}
 		}
 

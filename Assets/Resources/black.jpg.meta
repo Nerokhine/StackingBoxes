@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 3bf70e2081e3c41d7abb1decc009c95b
-timeCreated: 1513357034
+guid: 47ad54d00929c45a4a17ed90faf1544e
+timeCreated: 1513357651
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName: {}
@@ -40,7 +40,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 3
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -65,47 +65,10 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
-  - buildTarget: Standalone
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-  - buildTarget: iPhone
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-  - buildTarget: Android
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
   spriteSheet:
     serializedVersion: 2
     sprites: []
-    outline:
-    - - {x: 0, y: 172}
-      - {x: -30, y: 123.15384}
-      - {x: -30, y: 54.141113}
-      - {x: -30, y: -54.18197}
-      - {x: -30, y: -172}
-      - {x: 30, y: -171.52394}
-      - {x: 30, y: -135.34244}
-      - {x: 30, y: -54.697502}
-      - {x: 30, y: 55.0495}
-      - {x: 30, y: 122.138794}
+    outline: []
     physicsShape: []
   spritePackingTag: 
   userData: 

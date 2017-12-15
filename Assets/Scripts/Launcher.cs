@@ -19,8 +19,8 @@ public class Launcher : MonoBehaviour {
 	void Start () {
 		powerBarMask = GameObject.Find ("PowerBarMask");
 		launchingStation = GameObject.Find ("LaunchingStation");
-		initLaunchForceX = 500f;
-		initLaunchForceY = 1000f;
+		initLaunchForceX = 800f;
+		initLaunchForceY = 1600f;
 		maxLaunchForceX = 2000f;
 		maxLaunchForceY = 4000f;
 		rateLaunchForceX = 20f;
