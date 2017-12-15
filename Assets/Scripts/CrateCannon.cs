@@ -57,7 +57,7 @@ public class CrateCannon : MonoBehaviour {
 					crateCeiling += 5;
 				}
 
-				GameObject.Find ("ScoreText").GetComponent<Text>().text = "Score: " + maxSoFar;
+				GameObject.Find ("ScoreText").GetComponent<Text>().text = "Score: " + maxSoFar.ToString("F2");
 				GameObject.Find ("ElevateText").GetComponent<Text> ().text = "Crates Until Next Level: " + (crateCeiling - Launcher.cratesLaunched);
 			}
 		}

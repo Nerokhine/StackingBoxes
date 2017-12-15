@@ -47,7 +47,7 @@ public class Launcher : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		Debug.Log (powerBar.transform.localEulerAngles.z);
-		if (!Input.GetKey (KeyCode.Space)) {
+		if (!Input.GetMouseButton(0)) {
 			if (powerBar.transform.localEulerAngles.z > 350f) {
 				if (once2) {
 					motorSpeed *= -1;
@@ -71,7 +71,7 @@ public class Launcher : MonoBehaviour {
 		}
 
 		if (!hasLaunched) {
-			if (Input.GetKey (KeyCode.Space)) {
+			if (Input.GetMouseButton(0)) {
 				if (increasingLaunchForce) {
 					launchForce += rateLaunchForce;
 				} else {
@@ -95,7 +95,7 @@ public class Launcher : MonoBehaviour {
 				powerBarMask.transform.localPosition.z);
 
 
-			if (Input.GetKeyUp (KeyCode.Space)) {
+			if (Input.GetMouseButtonUp(0)) {
 				float launchForceY = ((powerBar.transform.localEulerAngles.z - 280f)/ (350f - 280f)) * launchForce;
 				float launchForceX = (1f - ((powerBar.transform.localEulerAngles.z - 280f)/ (350f - 280f))) * launchForce;
 				GetComponent<Rigidbody2D> ().AddForce (new Vector2 (launchForceX, launchForceY));
