@@ -19,12 +19,12 @@ public class Launcher : MonoBehaviour {
 	void Start () {
 		powerBarMask = GameObject.Find ("PowerBarMask");
 		launchingStation = GameObject.Find ("LaunchingStation");
-		initLaunchForceX = 50f;
-		initLaunchForceY = 100f;
-		maxLaunchForceX = 200f;
-		maxLaunchForceY = 400f;
-		rateLaunchForceX = 2f;
-		rateLaunchForceY = 4f;
+		initLaunchForceX = 500f;
+		initLaunchForceY = 1000f;
+		maxLaunchForceX = 2000f;
+		maxLaunchForceY = 4000f;
+		rateLaunchForceX = 20f;
+		rateLaunchForceY = 40f;
 		delayBeforeCheckingCollision = 0.2f;
 		delayBeforeCheckingCollisionCounter = 0f;
 		increasingLaunchForce = true;
@@ -77,6 +77,8 @@ public class Launcher : MonoBehaviour {
 					-3.5f,
 					powerBarMask.transform.localPosition.z);
 				hasLaunched = true;
+				//GetComponent<Rigidbody2D> ().bodyType = RigidbodyType2D.Dynamic;
+				transform.parent = GameObject.Find ("Boxes").transform;
 			}
 		}
 
